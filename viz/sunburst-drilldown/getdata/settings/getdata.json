@@ -57,6 +57,18 @@
             ]
         },
         {
+            "id": "tooltip",
+            "label": "Tooltip",
+            "elements": [
+                {
+                    "id": "compactNumberFormat",
+                    "label": "Compact numbers",
+                    "type": "CHECKBOX",
+                    "defaultValue": "false"
+                }
+            ]
+        },
+        {
             "id": "colors",
             "label": "Colour Scheme",
             "elements": [

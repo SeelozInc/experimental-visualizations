@@ -1,5 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Helper from '../../js/d3-common';
+import {compactFormat, localeData} from 'cldr-compact-number';
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -37,6 +39,20 @@ export function drawContent() {
     .attr('data-test', d => d.data.id)
     .attr('id', (d, i) => `cp-${i}`)
     .on('mouseover', (d, i, node) => {
+      if (this.compactNumberFormat) {
+        d.messageValue = compactFormat(d.value, 'en', localeData, {
+          significantDigits: 2,
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 2,
+        });
+
+        // compactFormat ignores values < 1000, so manually format
+        if (d.messageValue === d.value) {
+          d.messageValue = Number(d.messageValue).toFixed(2);
+        }
+      } else {
+        d.messageValue = d.value;
+      }
       showTooltip(d, i, node);
     })
     .on('mouseout', hideToolTip);
@@ -170,7 +186,7 @@ export function drawContent() {
         ? '< 1%'
         : d3.format('.0%')(d.value / ctx.totalMetric);
 
-    let metricText = `${ctx.metricAccessor}: ${d.value} `;
+    let metricText = `${ctx.metricAccessor}: ${d.messageValue} `;
     metricText += `(${percentage}`;
     if (d.data.depth > 1) {
       metricText += ` | ${totalPercentage}`;
