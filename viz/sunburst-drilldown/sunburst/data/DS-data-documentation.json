@@ -473,6 +473,7 @@
             "defaultValue": "black"
         },
         "isLegend": { "value": true, "defaultValue": false },
+        "compactNumberFormat": { "value": true, "defaultValue": false },
         "arcColors": {
             "value": "interpolateInferno",
             "defaultValue": "interpolateViridis"

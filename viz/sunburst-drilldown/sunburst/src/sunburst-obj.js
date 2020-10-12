@@ -47,6 +47,7 @@ export default class Sunburst {
     this.legend = true;
     this.colorSchemeReversed = false;
     this.horizontalOffset = 0;
+    this.compactNumberFormat = false;
 
     this.interactionId = null;
     this.isFilterData = false;

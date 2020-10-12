@@ -63,6 +63,12 @@ function drawViz(rawData) {
     // Draw Legend
     sunburst.legend = Helper.getStyleValue(data.style, 'isLegend');
 
+    // Compact Number Format
+    sunburst.compactNumberFormat = Helper.getStyleValue(
+      data.style,
+      'compactNumberFormat'
+    );
+
     // #### Filtering ####
 
     // Dimensions ID
